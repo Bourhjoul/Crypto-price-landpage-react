@@ -102,6 +102,7 @@ h2 {
 }
 
 .price_rect {
+    cursor: pointer;
     width: 230px;
     height: 70px;
     text-align: center;

@@ -3,6 +3,9 @@ import Navbar from "./components/Navbar";
 import { ReactComponent as Sketch } from "./Sketch.svg";
 import { MdAddAlert } from "react-icons/all";
 import { useState } from "react";
+import { message } from "antd";
+import 'antd/dist/antd.css'; 
+
 function App() {
   const [coins, setcoins] = useState([
     { name: "BTC", price: 49.158 },
@@ -13,6 +16,11 @@ function App() {
   ]);
 
   const [active, setactive] = useState(0);
+  const submithandler = (e) => {
+    console.log("test");
+    message.success("Alert set successfully")
+    e.preventDefault();
+  };
   return (
     <div>
       <Navbar />
@@ -21,10 +29,11 @@ function App() {
         <div className="RightSection">
           <p>Get notified when a coin goes above or below a price target.</p>
           <div className="Form">
-            <form>
+            <form onSubmit={submithandler}>
               Send me an Email
               <input
                 type="email"
+                required
                 className="forminput"
                 id="emailinput"
                 placeholder="Email"
@@ -43,9 +52,10 @@ function App() {
               </select>
               The price of
               <input
-                type="email"
+                type="number"
                 className="forminput"
                 id="priceinput"
+                required
                 placeholder="0.00$"
               />
               <br />
@@ -57,7 +67,7 @@ function App() {
                     marginRight: "2px",
                     marginBottom: "2px",
                   }}
-                />{" "}
+                />
                 Set Alert
               </button>
             </form>
